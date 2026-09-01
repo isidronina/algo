@@ -1,0 +1,115 @@
+//Elabore um projeto java para:
+// a) Declarar um vetor do tipo int e tamanho 200;
+//b) Escrever um método para preencher o array com valores aleatórios;
+// c) Escrever um método para ordenar o array (insertion sort);
+// d) Escrever um método de busca binária;
+// e) Realizar em main as chamada logicamente coerentes
+
+
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class atividade {
+    public static void main(String[] args) {
+        Scanner teclado= new Scanner(System.in);
+        int [] v=new int [200];
+        inserindoValores(v);
+        System.out.println("--------------Antes da ordenação-------------");
+        exibri(v);
+        insertionSort(v);
+
+        System.out.println("--------------Arrumado fica-----------------");
+        
+        exibri(v);
+        System.out.println("Diget o valor de busca:");
+        int valor= teclado.nextInt();
+
+        int indice=pesquisar(valor, v);
+        if (indice>=0) {
+            System.out.println("achou o " +valor+ " no indice:"+indice);
+        }
+        else{
+            System.out.println("valor não encontrado");
+        }
+
+
+
+        teclado.close();
+
+    }
+    public static void inserindoValores(int []v){
+        Random rd= new Random();
+        for (int i=0;i<v.length;i++) {
+            v[i]=rd.nextInt(10,501);            
+        }
+
+    } 
+    public static  void exibri(int []v){
+        for(int numero:v){
+            
+            System.out.print(numero);
+        }
+    } 
+
+    public static void insertionSort(int[]v){
+        for (int i=1;i<v.length;i++ ) {
+            int temp = v[i];
+            int j=i;
+            while(j>0 && v[j-1]>temp){
+                v[j]=v[j-1];
+                j--;//j=j-1;
+            }
+            v[j]=temp;
+        }
+    }
+
+
+    public static int pesquisar(int valor, int []v){
+        int inicio=0;
+        int fim=v.length-1; 
+        int meio;
+        while(inicio<=fim){
+            meio=(fim+inicio)/2;
+            if(valor==v[meio]){
+                return meio;
+            }
+            else if (valor>v[meio]){
+                inicio=meio+1;
+            }
+            else{
+                fim=meio-1;
+            }
+        }
+    return -1;
+    }
+ 
+     
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
