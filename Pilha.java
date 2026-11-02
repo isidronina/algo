@@ -60,4 +60,35 @@ public class Pilha {
     public int top(){ //vai me mostrar o valor encima da pipla //
         return vetor[controle-1];
     }
+    public void mostrarVetor() {
+        System.out.print("Vetor: [");
+
+        for (int i = 0; i < vetor.length; i++) {
+            if (i < controle) {
+                System.out.print(vetor[i]);
+            } else {
+                System.out.print("_");
+            }
+
+            if (i < vetor.length - 1) {
+                System.out.print(", ");
+            }
+        }
+
+        System.out.println("]");
+    }
+    
+    public void mostrarPilha() {
+        if (empty()) {
+            System.out.println("Pilha vazia!");
+        } else {
+            System.out.println("----- PILHA -----");
+
+            for (int i = controle - 1; i >= 0; i--) {
+                System.out.println("| " + vetor[i] + " |");
+            }
+
+            System.out.println("-------");
+        }
+    }
 }
