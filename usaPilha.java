@@ -53,12 +53,14 @@ public class usaPilha {
                     }
                     
                     break;
-                case 6://mostar
+                case 6:
+                    pilha.mostrarPilha();
+                    break;
 
-
-                case 7://sair//
+                case 7:
                     teclado.close();
-                    System.exit(0);//ele considera ao programa que a saida foi 0 no case sem erro//
+                    System.exit(0);
+                    break;
             }
         }
     }
