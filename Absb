@@ -1,0 +1,20 @@
+Atue como um desenvolvedor front-end especialista em refatoração. Eu tenho um projeto em Angular e preciso converter este componente específico para HTML5, CSS3 e JavaScript puro (Vanilla JS), mantendo o mesmo design e comportamento original.
+
+Por favor, faça a conversão seguindo estas diretrizes:
+1. Una o arquivo de template (.html) e a lógica do (.ts) em uma estrutura unificada (ou me mostre como integrá-los no arquivo .js final).
+2. Converta toda a lógica do TypeScript (classes, decoradores, tipos, modificadores de acesso) para funções ou classes ES6 em JavaScript puro.
+3. Substitua todas as diretivas do Angular (como *ngIf, *ngFor, [ngClass], etc.) e event bindings (como (click) ou (submit)) por manipulação de DOM padrão do JavaScript (usando document.querySelector, addEventListener, innerHTML ou condicionais nativas).
+4. Se o componente depender de Serviços (Injectables) para buscar dados, substitua-os por chamadas usando a API nativa fetch().
+5. Se houver navegação por rotas do Angular (Router), substitua por redirecionamentos padrão do navegador usando window.location.
+6. Garanta que as classes de estilo do CSS/SCSS continuem funcionando exatamente igual para preservar o design original.
+
+Aqui estão os arquivos do meu componente para você converter:
+
+--- ARQUIVO COMPONENT.TS ---
+[Cole aqui o conteúdo do seu arquivo .ts ou use @nome-do-arquivo.ts se a IA tiver acesso aos arquivos]
+
+--- ARQUIVO COMPONENT.HTML ---
+[Cole aqui o conteúdo do seu arquivo .html ou use @nome-do-arquivo.html]
+
+--- ARQUIVO COMPONENT.CSS (ou .SCSS) ---
+[Cole aqui o conteúdo do seu arquivo de estilo ou use @nome-do-arquivo.css]
