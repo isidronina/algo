@@ -44,5 +44,8 @@ public class Produto{
             this.id = id;
         }
 
-    
+        @Override //é uma marcação 
+        public String toString(){ //o toString sobrepoe o objeto 
+            return "Marca: " +marca+ " Nome: " +nome+ " Preço: " +preco+ " ID: " +id;
+        }
 }
