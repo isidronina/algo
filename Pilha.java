@@ -1,94 +1,114 @@
-public class Pilha {
-    private int[] vetor; ////
-    private int controle = 0; //ele vai controlar a quantidade de elementos na pilha//
+package modelo;
+public class Array {
+    private Produto[] lista= new Produto[4];
+    private int controle=0;// controle a quantidade produto do array list
 
-    public Pilha(int tamanho){ //contrutor: elecria um objeto que vai ter uma caracteriscica que eu colocar//
-        vetor=new int[tamanho];
+    public void inserir(Produto produto){ // o primeiro e tipo e outro acho que é o parametro
+        if (controle==lista.length) { //toda vez que ficar cheio ele faz o metodo dentro do if
+            //aumenta o tamanho do array
+            lista=alocarNovoArray();
 
+              //ou assim  tambem no controle++
+        }
+        lista[controle++]=produto;
+        
+        //controle++; //voce pode fazer no final assim 
     }
-    /**
-     * verifica se a pilha está vazia
-     * @return boolean
-     */
 
-    public boolean empty(){
-        return controle == 0;
+    private Produto[] alocarNovoArray(){
+        Produto [] novo =new Produto[lista.length+4];
+        System.arraycopy(lista, 0, novo, 0, lista.length);
+        return novo; 
     }
-    /***
-     * verifica se a pilha ta cheia
-     * @return
-     */
 
-    public boolean  full(){
-        return controle==vetor.length;
-    }
-    /**
-     * Insere um valor denrto da pilha, obdecendo o criterio
-     * LIFO
-     * @param n int
-     */
-    public void push(int n){
-        if(!full()){//!full=nao Cheio//
-            vetor[controle]=n; //esse if indica que quando o vetor nao estiver cheio vai dar para colocar mais numeros//
-            controle++;
-
-        }else{
-            System.out.println("Pilha cheia!");//para questoes referente aula foi feito desse jeito mas o correto era fazer de outra forma//
+    public void exibir(){
+        for(int i=0;i<controle;i++){
+            /*System.out.println("Nome: "+lista[i].getNome());//esse print lista[i] de um print do objeto
+            System.out.println("Marca: "+lista[i].getMarca());
+            System.out.println("Preco: "+lista[i].getPreco());
+            System.out.println("ID: "+lista[i].getId());
+            System.out.println("..................");*///esse é um jeto usando o get  mas que fica muito complicado pu cheio
+            System.out.println(lista[i].toString()); // o toString ja definido faz essa modificação automaticamente, mas para uso para estudo pode colocar .toString 
+            System.out.println("...................................................");
+            
         }
     }
-    /***
-     * faz a contagem de elemento na pilha 
-     * @return
-     */
 
-    public int size(){//esse faz devolver a quantidade de elemento da pilha //
+    public Produto pesquisarId(int id){
+        for(int i=0; i < controle; i++){
+            if(id == lista[i].getId()){
+                return lista[i];
+            }
+        }
+        return null;
+    }
+
+    public void atualizarPorId(int id, String nome, String marca, double preco){
+        for(int i=0; i < controle; i++){
+            if(id == lista[i].getId()){
+                lista[i].setNome(nome);
+                lista[i].setMarca(marca);
+                lista[i].setPreco(preco);
+            }
+        }
+    }
+
+    public void removerPorId(int id){
+        for(int i=0; i <controle; i++){
+            if(id == lista[i].getId()){
+                for(int j=i;j<controle-1;j++){
+                    lista[j]=lista[j+1];
+                }
+                controle--;
+                lista[controle]=null;
+                return ;
+
+            }
+        }
+    }
+
+    public static void mergeSort(int inicio, int tamanho, Produto[] v) {
+        if (inicio < tamanho - 1) {
+            int meio = (inicio + tamanho) / 2;
+            mergeSort(inicio, meio, v);
+            mergeSort(meio, tamanho, v);
+            intercalar(inicio, meio, tamanho, v);
+        }
+    }
+
+    private static void intercalar(int inicio, int meio, int tamanho, Produto[] v) {
+        int i, j, k;
+        Produto[] auxiliar = new Produto[tamanho - inicio];
+        i = inicio;
+        j = meio;
+        k = 0;
+
+        while (i < meio && j < tamanho) {
+            if (v[i].getId() <= v[j].getId()) {
+                auxiliar[k++] = v[i++];
+            } else {
+                auxiliar[k++] = v[j++];
+            }
+        }
+
+        while (i < meio) {
+            auxiliar[k++] = v[i++];
+        }
+
+        while (j < tamanho) {
+            auxiliar[k++] = v[j++];
+        }
+
+        for (i = inicio; i < tamanho; i++) {
+            v[i] = auxiliar[i - inicio];
+        }
+    }
+
+    public int getControle() {
         return controle;
     }
 
-    /***
-     * pré-condição:Pilha não vazia.
-     * @return int 
-     */
-
-    public int pop(){
-        int valor = vetor[controle-1];
-        controle--;
-        return valor;
-    }
-
-
-    public int top(){ //vai me mostrar o valor encima da pipla //
-        return vetor[controle-1];
-    }
-    public void mostrarVetor() {
-        System.out.print("Vetor: [");
-
-        for (int i = 0; i < vetor.length; i++) {
-            if (i < controle) {
-                System.out.print(vetor[i]);
-            } else {
-                System.out.print("_");
-            }
-
-            if (i < vetor.length - 1) {
-                System.out.print(", ");
-            }
-        }
-
-        System.out.println("]");
-    }
-    
-    public void mostrarPilha() {
-        if (empty()) {
-            System.out.println("Pilha vazia!");
-        } else {
-            System.out.println("----- PILHA -----");
-
-            for (int i = controle - 1; i >= 0; i--) {
-                System.out.println("| " + vetor[i] + " |");
-            }
-
-            System.out.println("-------");
-        }
+    public Produto[] getLista() {
+    return lista;
     }
 }
